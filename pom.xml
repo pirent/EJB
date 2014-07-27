@@ -1,42 +1,18 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	
+	<!-- Artifact information -->
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>pirent</groupId>
 	<artifactId>ejb</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
+	<description>Aggregator POM for EJB 3.1 Example</description>
 	<packaging>pom</packaging>
-	<name>..:: EJB 3.1 Example ::..</name>
+	<name>..:: Aggregator POM for EJB 3.1 Example ::..</name>
 
+	<!--  Modules in Aggregator -->
 	<modules>
 		<module>security</module>
 	</modules>
-	
-	<dependencies>
-		<dependency>
-			<groupId>junit</groupId>
-			<artifactId>junit</artifactId>
-			<version>4.8.1</version>
-			<scope>test</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.jboss.spec</groupId>
-			<artifactId>jboss-javaee-6.0</artifactId>
-			<version>1.0.0.Final</version>
-			<type>pom</type>
-			<scope>provided</scope>
-		</dependency>
-	</dependencies>
-	
-	<profiles>
-		<profile>
-			<id>downloadSources</id>
-			<activation>
-				<activeByDefault>true</activeByDefault>
-			</activation>
-			<properties>
-				<downloadSources>false</downloadSources>
-				<downloadJavadocs>true</downloadJavadocs>
-			</properties>
-		</profile>
-	</profiles>
+
 </project>
