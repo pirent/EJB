@@ -1,10 +1,13 @@
 package security.secureschool;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.logging.Logger;
 
 import javax.ejb.EJB;
 import javax.ejb.EJBAccessException;
 import javax.inject.Inject;
+import javax.naming.Context;
 import javax.naming.NamingException;
 
 import org.jboss.arquillian.container.test.api.Deployment;
@@ -85,5 +88,35 @@ public class SecureSchoolIntegrationTest {
 	public void unauthenticatedUserCannotOpenFrontDoor() throws NamingException {
 		// Try to open the front door before we're authenticated; should fail
 		unauthenticatedSchool.openFrontDoor();
+	}
+	
+	// ----------------------------------------------------------------------//
+	// -------------- Internal Helper Methods -------------------------------//
+	// ----------------------------------------------------------------------//
+	
+	/**
+	 * Logs in to JDNI with the specified username and password. This mechanism
+	 * is specific to OpenEJB container.
+	 * 
+	 * @param username
+	 * @param password
+	 * @return
+	 */
+	private Context login(final String username, final String password) {
+		assert username != null : "username must be specified";
+		assert password != null : "password must be specified";
+		
+		// Log in and create a context
+		final Map<String, Object> namingContextProps = new HashMap<String, Object>();
+		namingContextProps.put(Context.SECURITY_PRINCIPAL, username);
+		namingContextProps.put(Context.SECURITY_CREDENTIALS, password);
+		
+		//TODO
+		final Context context = null;
+		return context;
+	}
+	
+	private SecureSchoolLocalBusiness getEjb(final Context context) throws NamingException {
+		return (SecureSchoolLocalBusiness) context.lookup(JNDI_NAME_EJB);
 	}
 }
